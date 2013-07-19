@@ -45,7 +45,14 @@ class vsftpd (
   $hide_file               = false,
   $hide_ids                = 'NO',
   $setproctitle_enable     = 'NO',
-  $text_userdb_names       = 'NO'
+  $text_userdb_names       = 'NO',
+  $listen                  = 'YES',
+  $max_clients             = '0',
+  $max_per_ip              = '0',
+  $pasv_min_port           = '0',
+  $pasv_max_port           = '0',
+  $ftp_username            = 'ftp',
+  $banner_file             = false,
 ) {
 
   package { 'vsftpd': ensure => installed }
