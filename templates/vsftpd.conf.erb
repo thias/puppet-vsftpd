@@ -177,11 +177,21 @@ hide_file=<%= @hide_file %>
 hide_ids=<%= @hide_ids %>
 setproctitle_enable=<%= @setproctitle_enable %>
 text_userdb_names=<%= @text_userdb_names %>
+<% if @max_clients -%>
 max_clients=<%= @max_clients %>
+<% end -%>
+<% if @max_per_ip -%>
 max_per_ip=<%= @max_per_ip %>
+<% end -%>
+<% if @pasv_min_port -%>
 pasv_min_port=<%= @pasv_min_port %>
+<% end -%>
+<% if @pasv_max_port -%>
 pasv_max_port=<%= @pasv_max_port %>
+<% end -%>
+<% if @ftp_username -%>
 ftp_username=<%= @ftp_username %>
+<% end -%>
 <% if @banner_file -%>
 banner_file=<%= @banner_file %>
 <% end -%>
