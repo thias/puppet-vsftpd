@@ -158,7 +158,7 @@ ls_recurse_enable=YES
 # When "listen" directive is enabled, vsftpd runs in standalone mode and
 # listens on IPv4 sockets. This directive cannot be used in conjunction
 # with the listen_ipv6 directive.
-listen=YES
+listen=<%= @listen %>
 <% if @listen_port -%>
 listen_port=<%= @listen_port %>
 <% end -%>
@@ -177,3 +177,11 @@ hide_file=<%= @hide_file %>
 hide_ids=<%= @hide_ids %>
 setproctitle_enable=<%= @setproctitle_enable %>
 text_userdb_names=<%= @text_userdb_names %>
+max_clients=<%= @max_clients %>
+max_per_ip=<%= @max_per_ip %>
+pasv_min_port=<%= @pasv_min_port %>
+pasv_max_port=<%= @pasv_max_port %>
+ftp_username=<%= @ftp_username %>
+<% if @banner_file -%>
+banner_file=<%= @banner_file %>
+<% end -%>
