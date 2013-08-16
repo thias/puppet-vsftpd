@@ -64,6 +64,13 @@ class vsftpd (
     hasstatus => true,
   }
 
+  file { '/etc/vsftpd':
+    ensure => directory,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0755',
+  }
+
   file { '/etc/vsftpd/vsftpd.conf':
     require => Package['vsftpd'],
     content => template('vsftpd/vsftpd.conf.erb'),
