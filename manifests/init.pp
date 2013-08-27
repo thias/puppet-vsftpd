@@ -52,7 +52,8 @@ class vsftpd (
   $pasv_min_port           = undef,
   $pasv_max_port           = undef,
   $ftp_username            = undef,
-  $banner_file             = undef
+  $banner_file             = undef,
+  $vsftpd_config_file      = '/etc/vsftpd/vsftpd.conf'
 ) {
 
   package { 'vsftpd': ensure => installed }
@@ -64,7 +65,7 @@ class vsftpd (
     hasstatus => true,
   }
 
-  file { '/etc/vsftpd/vsftpd.conf':
+  file { $vsftpd_config_file:
     require => Package['vsftpd'],
     content => template('vsftpd/vsftpd.conf.erb'),
     notify  => Service['vsftpd'],
