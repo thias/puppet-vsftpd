@@ -52,9 +52,8 @@ class vsftpd (
   $pasv_min_port           = undef,
   $pasv_max_port           = undef,
   $ftp_username            = undef,
-  $banner_file             = undef,
-  $vsftpd_config_file      = '/etc/vsftpd/vsftpd.conf'
-) {
+  $banner_file             = undef
+) inherits vsftpd::params {
 
   package { 'vsftpd': ensure => installed }
 
