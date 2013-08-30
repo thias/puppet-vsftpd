@@ -14,7 +14,7 @@
 #  }
 #
 class vsftpd (
-  $confdir                 = $::vsftpd::params::confdir
+  $confdir                 = $::vsftpd::params::confdir,
   # vsftpd.conf options
   $anonymous_enable        = 'YES',
   $local_enable            = 'YES',
@@ -54,7 +54,7 @@ class vsftpd (
   $pasv_min_port           = undef,
   $pasv_max_port           = undef,
   $ftp_username            = undef,
-  $banner_file             = undef,
+  $banner_file             = undef
 ) inherits ::vsftpd::params {
 
   package { 'vsftpd': ensure => installed }
