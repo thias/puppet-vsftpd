@@ -44,6 +44,7 @@ class vsftpd (
   $listen_port             = undef,
   $pam_service_name        = 'vsftpd',
   $userlist_enable         = 'YES',
+  $userlist_deny           = undef,
   $tcp_wrappers            = 'YES',
   $hide_file               = undef,
   $hide_ids                = 'NO',
