@@ -1,3 +1,6 @@
+2013-09-04 - 0.1.5
+* Add support for userlist_deny (Dennis Laumen).
+
 2013-09-03 - 0.1.4
 * Add params class with a confdir to support Debian/Ubuntu.
 
