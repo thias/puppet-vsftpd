@@ -1,5 +1,5 @@
 name 'thias-vsftpd'
-version '0.1.5'
+version '0.2.0'
 source 'git://github.com/thias/puppet-vsftpd'
 author 'Matthias Saou'
 license 'Apache 2.0'
