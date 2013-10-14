@@ -2,6 +2,9 @@
 #
 class vsftpd::params {
 
+  $package_name = 'vsftpd'
+  $service_name = 'vsftpd'
+
   case $::operatingsystem {
     'RedHat',
     'CentOS',

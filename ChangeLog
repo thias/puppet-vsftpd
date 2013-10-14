@@ -1,5 +1,6 @@
 * Add support for arbitrary extra directives (#6).
 * Add support for using an empty or a custom template for vsftpd.conf.
+* Move package and service names to params class.
 
 2013-09-04 - 0.1.5
 * Add support for userlist_deny (Dennis Laumen).

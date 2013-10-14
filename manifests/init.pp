@@ -15,6 +15,8 @@
 #
 class vsftpd (
   $confdir                 = $::vsftpd::params::confdir,
+  $package_name            = $::vsftpd::params::package_name,
+  $service_name            = $::vsftpd::params::service_name,
   $template                = 'vsftpd/vsftpd.conf.erb',
   # vsftpd.conf options
   $anonymous_enable        = 'YES',
@@ -60,19 +62,19 @@ class vsftpd (
   $directives              = {},
 ) inherits ::vsftpd::params {
 
-  package { 'vsftpd': ensure => installed }
+  package { $package_name: ensure => installed }
 
-  service { 'vsftpd':
-    require   => Package['vsftpd'],
+  service { $service_name:
+    require   => Package[$package_name],
     enable    => true,
     ensure    => running,
     hasstatus => true,
   }
 
   file { "${confdir}/vsftpd.conf":
-    require => Package['vsftpd'],
+    require => Package[$package_name],
     content => template($template),
-    notify  => Service['vsftpd'],
+    notify  => Service[$service_name],
   }
 
 }
