@@ -198,3 +198,6 @@ ftp_username=<%= @ftp_username %>
 <% if @banner_file -%>
 banner_file=<%= @banner_file %>
 <% end -%>
+<% @directives.sort_by {|key,value| key}.each do |key,value| -%>
+<%= key %>=<%= value %>
+<% end -%>

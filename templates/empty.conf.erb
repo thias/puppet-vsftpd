@@ -1,0 +1,9 @@
+# This is vsftpd.conf created from scratch by puppet.
+#
+# *** DO NOT EDIT HERE ***
+#
+
+<% @directives.sort_by {|key,value| key}.each do |key,value| -%>
+<%= key %>=<%= value %>
+<% end -%>
+
