@@ -59,8 +59,8 @@ class vsftpd (
   $pasv_max_port           = undef,
   $ftp_username            = undef,
   $banner_file             = undef,
-  $directives              = {},
   $allow_writeable_chroot  = undef,
+  $directives              = {},
 ) inherits ::vsftpd::params {
 
   package { $package_name: ensure => installed }

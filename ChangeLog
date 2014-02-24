@@ -1,3 +1,5 @@
+* Add allow_writeable_chroot directive (#8).
+
 2013-10-14 - 0.2.0
 * Add support for arbitrary extra directives (#6).
 * Add support for using an empty or a custom template for vsftpd.conf.
