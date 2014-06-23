@@ -19,7 +19,7 @@ class vsftpd (
   $service_name            = $::vsftpd::params::service_name,
   $template                = 'vsftpd/vsftpd.conf.erb',
   # vsftpd.conf options
-  $anonymous_enable        = 'YES',
+  $anonymous_enable        = 'NO',
   $local_enable            = 'YES',
   $write_enable            = 'YES',
   $local_umask             = '022',
@@ -61,6 +61,7 @@ class vsftpd (
   $banner_file             = undef,
   $allow_writeable_chroot  = undef,
   $directives              = {},
+  $users                   = ['user1', 'user2'], 
 ) inherits ::vsftpd::params {
 
   package { $package_name: ensure => installed }
@@ -75,6 +76,12 @@ class vsftpd (
   file { "${confdir}/vsftpd.conf":
     require => Package[$package_name],
     content => template($template),
+    notify  => Service[$service_name],
+  }
+
+  file { "${confdir}/vsftpd.users.conf":
+    require => Package[$package_name],
+    content => template('vsftpd/vsftpd.users.conf.erb'),
     notify  => Service[$service_name],
   }
 
