@@ -61,7 +61,8 @@ class vsftpd (
   $banner_file             = undef,
   $allow_writeable_chroot  = undef,
   $directives              = {},
-  $users                   = ['user1', 'user2'], 
+  $users                   = ['user1', 'user2'],
+  $userlist_file	   = vsftpd.users.conf,
 ) inherits ::vsftpd::params {
 
   package { $package_name: ensure => installed }
@@ -77,6 +78,10 @@ class vsftpd (
     require => Package[$package_name],
     content => template($template),
     notify  => Service[$service_name],
+  }
+
+  if ("$userlist_enable" == "YES") {
+    notify{"userlist is YES"}
   }
 
   file { "${confdir}/vsftpd.users.conf":
