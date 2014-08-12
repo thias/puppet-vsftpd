@@ -62,7 +62,7 @@ class vsftpd (
   $allow_writeable_chroot  = undef,
   $directives              = {},
   $users                   = ['user1', 'user2'],
-  $userlist_file	   = "vsftpd.users.conf",
+  $userlist_file	   = "/etc/vsftpd.users.conf",
 ) inherits ::vsftpd::params {
 
   package { $package_name: ensure => installed }
