@@ -39,6 +39,12 @@ class vsftpd (
   $ascii_upload_enable     = 'NO',
   $ascii_download_enable   = 'NO',
   $ftpd_banner             = undef,
+  $guest_enable            = 'NO',
+  $virtual_use_local_privs = 'YES',
+  $log_ftp_protocol        = 'NO',
+  # intentionally not interpolated
+  $user_sub_token          = '$USER',
+  $local_root              = '/ftp/virtual/$USER',
   $chroot_local_user       = 'NO',
   $chroot_list_enable      = 'NO',
   $chroot_list_file        = '/etc/vsftpd/chroot_list',
