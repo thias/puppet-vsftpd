@@ -71,14 +71,14 @@ xferlog_file=<%= @xferlog_file %>
 xferlog_std_format=<%= @xferlog_std_format %>
 #
 # You may change the default value for timing out an idle session.
-<% if @idle_session_timeout != '600' -%>
+<% if @idle_session_timeout != '300' -%>
 idle_session_timeout=<%= @idle_session_timeout %>
 <% else -%>
 #idle_session_timeout=600
 <% end -%>
 #
 # You may change the default value for timing out a data connection.
-<% if @data_connection_timeout != '120' -%>
+<% if @data_connection_timeout != '300' -%>
 data_connection_timeout=<%= @data_connection_timeout %>
 <% else -%>
 #data_connection_timeout=120
@@ -86,7 +86,7 @@ data_connection_timeout=<%= @data_connection_timeout %>
 #
 # It is recommended that you define on your system a unique user which the
 # ftp server can use as a totally isolated and unprivileged user.
-<% if @nopriv_user -%>
+<% if @nopriv_user != 'nobody' -%>
 nopriv_user=<%= @nopriv_user %>
 <% else -%>
 #nopriv_user=ftpsecure
@@ -136,8 +136,16 @@ ftpd_banner=<%= @ftpd_banner %>
 # You may specify an explicit list of local users to chroot() to their home
 # directory. If chroot_local_user is YES, then this list becomes a list of
 # users to NOT chroot().
+<% if @chroot_local_user == 'YES' -%>
 chroot_local_user=<%= @chroot_local_user %>
+<% else -%>
+#chroot_local_user=YES
+<% end -%>
+<% if @chroot_list_enable == 'YES' -%>
 chroot_list_enable=<%= @chroot_list_enable %>
+<% else -%>
+#chroot_list_enable=YES
+<% end -%>
 <% if @chroot_list_file != '/etc/vsftpd/chroot_list' -%>
 chroot_list_file=<%= @chroot_list_file %>
 <% else -%>
@@ -159,7 +167,7 @@ ls_recurse_enable=YES
 # listens on IPv4 sockets. This directive cannot be used in conjunction
 # with the listen_ipv6 directive.
 listen=<%= @listen %>
-<% if @listen_port -%>
+<% if @listen_port != '21' -%>
 listen_port=<%= @listen_port %>
 <% end -%>
 #
@@ -170,29 +178,30 @@ listen_port=<%= @listen_port %>
 
 pam_service_name=<%= @pam_service_name %>
 userlist_enable=<%= @userlist_enable %>
-<% if @userlist_deny -%>
+<% if @userlist_deny == 'NO' -%>
 userlist_deny=<%= @userlist_deny %>
+<% end -%>
+<% if @userlist_file != '/etc/vsftpd/user_list' -%>
+userlist_file=<%= @userlist_file %>
 <% end -%>
 tcp_wrappers=<%= @tcp_wrappers %>
 <% if @hide_file -%>
 hide_file=<%= @hide_file %>
 <% end -%>
-hide_ids=<%= @hide_ids %>
 setproctitle_enable=<%= @setproctitle_enable %>
-text_userdb_names=<%= @text_userdb_names %>
-<% if @max_clients -%>
+<% if @max_clients != '2000' -%>
 max_clients=<%= @max_clients %>
 <% end -%>
-<% if @max_per_ip -%>
+<% if @max_per_ip != '50' -%>
 max_per_ip=<%= @max_per_ip %>
 <% end -%>
-<% if @pasv_min_port -%>
+<% if @pasv_min_port != '0' -%>
 pasv_min_port=<%= @pasv_min_port %>
 <% end -%>
-<% if @pasv_max_port -%>
+<% if @pasv_max_port != '0' -%>
 pasv_max_port=<%= @pasv_max_port %>
 <% end -%>
-<% if @ftp_username -%>
+<% if @ftp_username != 'ftp' -%>
 ftp_username=<%= @ftp_username %>
 <% end -%>
 <% if @banner_file -%>
