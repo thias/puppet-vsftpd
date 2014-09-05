@@ -1,0 +1,12 @@
+# This file is being maintained by Puppet.
+# DO NOT EDIT
+
+# vsftpd userlist
+# If userlist_deny=NO, only allow users in this file
+# If userlist_deny=YES (default), never allow users in this file, and
+# do not even prompt for a password.
+# Note that the default vsftpd pam config also checks /etc/vsftpd/ftpusers
+# for users that are denied.
+<% @userlist_users.each do |user| -%>
+<%= user %>
+<% end -%>
