@@ -4,6 +4,7 @@ class vsftpd::params {
 
   $package_name = 'vsftpd'
   $service_name = 'vsftpd'
+  $version      = undef
 
   case $::operatingsystem {
     'RedHat',

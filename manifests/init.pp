@@ -17,6 +17,7 @@ class vsftpd (
   $confdir                 = $::vsftpd::params::confdir,
   $package_name            = $::vsftpd::params::package_name,
   $service_name            = $::vsftpd::params::service_name,
+  $version                 = $::vsftpd::params::version,
   $template                = 'vsftpd/vsftpd.conf.erb',
   $confname                = 'vsftpd.conf',
   # vsftpd.conf options
@@ -49,13 +50,17 @@ class vsftpd (
   $chroot_local_user       = 'NO',
   $chroot_list_enable      = 'NO',
   $chroot_list_file        = '/etc/vsftpd/chroot_list',
+  $local_root              = undef,
+  $user_sub_token          = undef,
   $ls_recurse_enable       = 'NO',
   $listen                  = 'YES',
   $listen_port             = undef,
   $pam_service_name        = 'vsftpd',
   $userlist_enable         = 'YES',
+  $userlist_log            = 'NO',
   $userlist_deny           = undef,
   $tcp_wrappers            = 'YES',
+  $session_support         = 'NO',
   $hide_file               = undef,
   $hide_ids                = 'NO',
   $setproctitle_enable     = 'NO',
@@ -67,15 +72,32 @@ class vsftpd (
   $pasv_address            = undef,
   $pasv_min_port           = undef,
   $pasv_max_port           = undef,
+  $pasv_address            = undef,
   $ftp_username            = undef,
   $banner_file             = undef,
   $allow_writeable_chroot  = undef,
+  $ssl_enable              = 'NO',
+  $rsa_cert_file           = undef,
+  $rsa_private_key_file    = undef,
+  $require_ssl_reuse       = 'YES',
+  $allow_anon_ssl          = 'YES',
+  $force_local_data_ssl    = 'NO',
+  $force_local_logins_ssl  = 'YES',
+  $ssl_tlsv1               = 'YES',
+  $ssl_sslv2               = 'NO',
+  $ssl_sslv3               = 'NO',
+  $ssl_ciphers             = 'HIGH',
   $directives              = {},
   $users                   = ['user1', 'user2'],
   $userlist_file	   = "/etc/vsftpd.users.conf",
 ) inherits ::vsftpd::params {
-
-  package { $package_name: ensure => installed }
+  
+  if $version == undef {
+   package { $package_name: ensure => installed }    
+  } else {
+   package { $package_name: ensure => $version } 
+  }
+  
 
   service { $service_name:
     require   => Package[$package_name],
@@ -88,6 +110,15 @@ class vsftpd (
     require => Package[$package_name],
     content => template($template),
     notify  => Service[$service_name],
+  }
+  
+  file { "${confdir}/cert":
+    ensure => directory,
+  }
+
+  selboolean { 'ftp_home_dir':
+    persistent => true,
+    value      => on,
   }
 
   if ("$userlist_enable" == "YES") {
