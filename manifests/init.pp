@@ -18,6 +18,7 @@ class vsftpd (
   $package_name            = $::vsftpd::params::package_name,
   $service_name            = $::vsftpd::params::service_name,
   $template                = 'vsftpd/vsftpd.conf.erb',
+  $confname                = 'vsftpd.conf',
   # vsftpd.conf options
   $anonymous_enable        = 'YES',
   $local_enable            = 'YES',
@@ -72,7 +73,7 @@ class vsftpd (
     hasstatus => true,
   }
 
-  file { "${confdir}/vsftpd.conf":
+  file { "${confdir}/${confname}":
     require => Package[$package_name],
     content => template($template),
     notify  => Service[$service_name],
