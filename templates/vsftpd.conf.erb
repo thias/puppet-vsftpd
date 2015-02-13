@@ -186,6 +186,15 @@ max_clients=<%= @max_clients %>
 <% if @max_per_ip -%>
 max_per_ip=<%= @max_per_ip %>
 <% end -%>
+<% if @pasv_enable -%>
+pasv_enable=YES
+<% end -%>
+<% if @port_enable -%>
+port_enable=YES
+<% end -%>
+<% if @pasv_address -%>
+pasv_address=<%= @pasv_address %>
+<% end -%>
 <% if @pasv_min_port -%>
 pasv_min_port=<%= @pasv_min_port %>
 <% end -%>
