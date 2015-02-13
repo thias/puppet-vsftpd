@@ -13,7 +13,25 @@ anonymous_enable=<%= @anonymous_enable %>
 #
 # Uncomment this to allow local users to log in.
 local_enable=<%= @local_enable %>
-#
+
+# If enabled, all non-anonymous logins are classed as "guest" logins. i
+# A guest login is remapped to the user specified in the guest_username setting.
+guest_enable=<%= @guest_enable %>
+
+# If enabled, virtual users will use the same privileges as local users.
+# By default, virtual users will use the same privileges as anonymous users,
+# which tends to be more restrictive (especially in terms of write access).
+virtual_use_local_privs=<%=@virtual_use_local_privs%>
+
+# It is used to automatically generate a home directory for each virtual user, based on a template.
+user_sub_token=<%=@user_sub_token%>
+
+# This option represents a directory which vsftpd will try to change into after a local (i.e. non-anonymous) login.
+local_root=<%=@local_root%>
+
+# When enabled, all FTP requests and responses are logged, providing the option xferlog_std_format is not enabled. Useful for debugging.
+log_ftp_protocol=<%=@log_ftp_protocol%>
+
 # Uncomment this to enable any form of FTP write command.
 write_enable=<%= @write_enable %>
 #
