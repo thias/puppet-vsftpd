@@ -13,7 +13,25 @@ anonymous_enable=<%= @anonymous_enable %>
 #
 # Uncomment this to allow local users to log in.
 local_enable=<%= @local_enable %>
-#
+
+# If enabled, all non-anonymous logins are classed as "guest" logins. i
+# A guest login is remapped to the user specified in the guest_username setting.
+guest_enable=<%= @guest_enable %>
+
+# If enabled, virtual users will use the same privileges as local users.
+# By default, virtual users will use the same privileges as anonymous users,
+# which tends to be more restrictive (especially in terms of write access).
+virtual_use_local_privs=<%=@virtual_use_local_privs%>
+
+# It is used to automatically generate a home directory for each virtual user, based on a template.
+user_sub_token=<%=@user_sub_token%>
+
+# This option represents a directory which vsftpd will try to change into after a local (i.e. non-anonymous) login.
+local_root=<%=@local_root%>
+
+# When enabled, all FTP requests and responses are logged, providing the option xferlog_std_format is not enabled. Useful for debugging.
+log_ftp_protocol=<%=@log_ftp_protocol%>
+
 # Uncomment this to enable any form of FTP write command.
 write_enable=<%= @write_enable %>
 #
@@ -144,6 +162,22 @@ chroot_list_file=<%= @chroot_list_file %>
 # (default follows)
 #chroot_list_file=/etc/vsftpd/chroot_list
 <% end -%>
+<% if @local_root -%>
+local_root=<%= @local_root %>
+<% end -%>
+<% if @user_sub_token -%>
+user_sub_token=<%= @user_sub_token %>
+<% end -%>
+#session_support
+#This controls whether vsftpd attempts to maintain sessions for logins. 
+#If vsftpd is maintaining sessions, it will try and update utmp and wtmp.
+#It will also open a pam_session if using PAM to authenticate, and only 
+#close this upon logout. You may wish to disable this if you do not need
+#session logging, and you wish to give vsftpd more opportunity to run 
+#with less processes and / or less privilege. 
+# NOTE - utmp and wtmp support is only provided with PAM enabled builds.
+# Default: NO
+session_support=<%= @session_support %>
 #
 # You may activate the "-R" option to the builtin ls. This is disabled by
 # default to avoid remote users being able to cause excessive I/O on large
@@ -170,9 +204,11 @@ listen_port=<%= @listen_port %>
 
 pam_service_name=<%= @pam_service_name %>
 userlist_enable=<%= @userlist_enable %>
+userlist_log=<%= @userlist_log %>
 <% if @userlist_deny -%>
 userlist_deny=<%= @userlist_deny %>
 <% end -%>
+userlist_file=<%= @userlist_file %>
 tcp_wrappers=<%= @tcp_wrappers %>
 <% if @hide_file -%>
 hide_file=<%= @hide_file %>
@@ -186,11 +222,23 @@ max_clients=<%= @max_clients %>
 <% if @max_per_ip -%>
 max_per_ip=<%= @max_per_ip %>
 <% end -%>
+<% if @pasv_enable -%>
+pasv_enable=YES
+<% end -%>
+<% if @port_enable -%>
+port_enable=YES
+<% end -%>
+<% if @pasv_address -%>
+pasv_address=<%= @pasv_address %>
+<% end -%>
 <% if @pasv_min_port -%>
 pasv_min_port=<%= @pasv_min_port %>
 <% end -%>
 <% if @pasv_max_port -%>
 pasv_max_port=<%= @pasv_max_port %>
+<% end -%>
+<% if @pasv_address -%>
+pasv_address=<%= @pasv_address %>
 <% end -%>
 <% if @ftp_username -%>
 ftp_username=<%= @ftp_username %>
@@ -203,4 +251,17 @@ allow_writeable_chroot=<%= @allow_writeable_chroot %>
 <% end -%>
 <% @directives.reject {|key,value| value == :undef}.sort_by {|key,value| key}.each do |key,value| -%>
 <%= key %>=<%= value %>
+<% end -%>
+<% if @ssl_enable == 'YES' -%>
+ssl_enable=<%= @ssl_enable %>
+rsa_cert_file=<%= @rsa_cert_file %>
+rsa_private_key_file=<%= @rsa_private_key_file %>
+require_ssl_reuse=<%= @require_ssl_reuse %>
+allow_anon_ssl=<%= @allow_anon_ssl %>
+force_local_data_ssl=<%= @force_local_data_ssl %>
+force_local_logins_ssl=<%= @force_local_logins_ssl %>
+ssl_tlsv1=<%= @ssl_tlsv1 %>
+ssl_sslv2=<%= @ssl_sslv2 %>
+ssl_sslv3=<%= @ssl_sslv3 %>
+ssl_ciphers=<%= @ssl_ciphers %>
 <% end -%>
