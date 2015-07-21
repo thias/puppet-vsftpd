@@ -12,6 +12,7 @@ class vsftpd::params {
       $confdir = '/etc/vsftpd'
     }
     'Debian',
+    'SLES',
     'Ubuntu': {
       $confdir = '/etc'
     }
