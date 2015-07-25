@@ -204,3 +204,6 @@ allow_writeable_chroot=<%= @allow_writeable_chroot %>
 <% @directives.reject {|key,value| value == :undef}.sort_by {|key,value| key}.each do |key,value| -%>
 <%= key %>=<%= value %>
 <% end -%>
+<% if @seccomp_sandbox -%>
+seccomp_sandbox=<%= @seccomp_sandbox %>
+<% end -%>
