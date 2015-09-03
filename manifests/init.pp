@@ -61,9 +61,10 @@ class vsftpd (
   $banner_file             = undef,
   $allow_writeable_chroot  = undef,
   $directives              = {},
+  $ensure                  = 'installed',
 ) inherits ::vsftpd::params {
 
-  package { $package_name: ensure => installed }
+  package { $package_name: ensure => $ensure }
 
   service { $service_name:
     require   => Package[$package_name],
