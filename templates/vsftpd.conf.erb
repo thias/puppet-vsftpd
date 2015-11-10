@@ -1,3 +1,7 @@
+# This file is being maintained by Puppet.
+# DO NOT EDIT
+#
+#
 # Example config file /etc/vsftpd/vsftpd.conf
 #
 # The default compiled in settings are fairly paranoid. This sample file
@@ -203,4 +207,223 @@ allow_writeable_chroot=<%= @allow_writeable_chroot %>
 <% end -%>
 <% @directives.reject {|key,value| value == :undef}.sort_by {|key,value| key}.each do |key,value| -%>
 <%= key %>=<%= value %>
+<% end -%>
+<% if @ssl_request_cert != scope.lookupvar('vsftpd::params::ssl_request_cert') -%>
+ssl_request_cert=<%= @ssl_request_cert %>
+<% end -%>
+<% if @anon_world_readable_only != scope.lookupvar('vsftpd::params::anon_world_readable_only') -%>
+anon_world_readable_only=<%= @anon_world_readable_only %>
+<% end -%>
+<% if @background != scope.lookupvar('vsftpd::params::background') -%>
+background=<%= @background %>
+<% end -%>
+<% if @check_shell != scope.lookupvar('vsftpd::params::check_shell') -%>
+check_shell=<%= @check_shell %>
+<% end -%>
+<% if @chmod_enable != scope.lookupvar('vsftpd::params::chmod_enable') -%>
+chmod_enable=<%= @chmod_enable %>
+<% end -%>
+<% if @deny_email_enable != scope.lookupvar('vsftpd::params::deny_email_enable') -%>
+deny_email_enable=<%= @deny_email_enable %>
+<% end -%>
+<% if @dirlist_enable != scope.lookupvar('vsftpd::params::dirlist_enable') -%>
+dirlist_enable=<%= @dirlist_enable %>
+<% end -%>
+<% if @download_enable != scope.lookupvar('vsftpd::params::download_enable') -%>
+download_enable=<%= @download_enable %>
+<% end -%>
+<% if @dual_log_enable != scope.lookupvar('vsftpd::params::dual_log_enable') -%>
+dual_log_enable=<%= @dual_log_enable %>
+<% end -%>
+<% if @force_dot_files != scope.lookupvar('vsftpd::params::force_dot_files') -%>
+force_dot_files=<%= @force_dot_files %>
+<% end -%>
+<% if @force_anon_data_ssl != scope.lookupvar('vsftpd::params::force_anon_data_ssl') -%>
+force_anon_data_ssl=<%= @force_anon_data_ssl %>
+<% end -%>
+<% if @force_anon_logins_ssl != scope.lookupvar('vsftpd::params::force_anon_logins_ssl') -%>
+force_anon_logins_ssl=<%= @force_anon_logins_ssl %>
+<% end -%>
+<% if @force_local_data_ssl != scope.lookupvar('vsftpd::params::force_local_data_ssl') -%>
+force_local_data_ssl=<%= @force_local_data_ssl %>
+<% end -%>
+<% if @force_local_logins_ssl != scope.lookupvar('vsftpd::params::force_local_logins_ssl') -%>
+force_local_logins_ssl=<%= @force_local_logins_ssl %>
+<% end -%>
+<% if @guest_enable != scope.lookupvar('vsftpd::params::guest_enable') -%>
+guest_enable=<%= @guest_enable %>
+<% end -%>
+<% if @lock_upload_files != scope.lookupvar('vsftpd::params::lock_upload_files') -%>
+lock_upload_files=<%= @lock_upload_files %>
+<% end -%>
+<% if @log_ftp_protocol != scope.lookupvar('vsftpd::params::log_ftp_protocol') -%>
+log_ftp_protocol=<%= @log_ftp_protocol %>
+<% end -%>
+<% if @mdtm_write != scope.lookupvar('vsftpd::params::mdtm_write') -%>
+mdtm_write=<%= @mdtm_write %>
+<% end -%>
+<% if @no_anon_password != scope.lookupvar('vsftpd::params::no_anon_password') -%>
+no_anon_password=<%= @no_anon_password %>
+<% end -%>
+<% if @no_log_lock != scope.lookupvar('vsftpd::params::no_log_lock') -%>
+no_log_lock=<%= @no_log_lock %>
+<% end -%>
+<% if @one_process_model != scope.lookupvar('vsftpd::params::one_process_model') -%>
+one_process_model=<%= @one_process_model %>
+<% end -%>
+<% if @passwd_chroot_enable != scope.lookupvar('vsftpd::params::passwd_chroot_enable') -%>
+passwd_chroot_enable=<%= @passwd_chroot_enable %>
+<% end -%>
+<% if @pasv_addr_resolve != scope.lookupvar('vsftpd::params::pasv_addr_resolve') -%>
+pasv_addr_resolve=<%= @pasv_addr_resolve %>
+<% end -%>
+<% if @pasv_enable != scope.lookupvar('vsftpd::params::pasv_enable') -%>
+pasv_enable=<%= @pasv_enable %>
+<% end -%>
+<% if @pasv_promiscuous != scope.lookupvar('vsftpd::params::pasv_promiscuous') -%>
+pasv_promiscuous=<%= @pasv_promiscuous %>
+<% end -%>
+<% if @port_enable != scope.lookupvar('vsftpd::params::port_enable') -%>
+port_enable=<%= @port_enable %>
+<% end -%>
+<% if @port_promiscuous != scope.lookupvar('vsftpd::params::port_promiscuous') -%>
+port_promiscuous=<%= @port_promiscuous %>
+<% end -%>
+<% if @reverse_lookup_enable != scope.lookupvar('vsftpd::params::reverse_lookup_enable') -%>
+reverse_lookup_enable=<%= @reverse_lookup_enable %>
+<% end -%>
+<% if @run_as_launching_user != scope.lookupvar('vsftpd::params::run_as_launching_user') -%>
+run_as_launching_user=<%= @run_as_launching_user %>
+<% end -%>
+<% if @secure_email_list_enable != scope.lookupvar('vsftpd::params::secure_email_list_enable') -%>
+secure_email_list_enable=<%= @secure_email_list_enable %>
+<% end -%>
+<% if @session_support != scope.lookupvar('vsftpd::params::session_support') -%>
+session_support=<%= @session_support %>
+<% end -%>
+<% if @ssl_enable != scope.lookupvar('vsftpd::params::ssl_enable') -%>
+ssl_enable=<%= @ssl_enable %>
+<% end -%>
+<% if @ssl_sslv2 != scope.lookupvar('vsftpd::params::ssl_sslv2') -%>
+ssl_sslv2=<%= @ssl_sslv2 %>
+<% end -%>
+<% if @ssl_sslv3 != scope.lookupvar('vsftpd::params::ssl_sslv3') -%>
+ssl_sslv3=<%= @ssl_sslv3 %>
+<% end -%>
+<% if @ssl_tlsv1 != scope.lookupvar('vsftpd::params::ssl_tlsv1') -%>
+ssl_tlsv1=<%= @ssl_tlsv1 %>
+<% end -%>
+<% if @syslog_enable != scope.lookupvar('vsftpd::params::syslog_enable') -%>
+syslog_enable=<%= @syslog_enable %>
+<% end -%>
+<% if @tilde_user_enable != scope.lookupvar('vsftpd::params::tilde_user_enable') -%>
+tilde_user_enable=<%= @tilde_user_enable %>
+<% end -%>
+<% if @use_localtime != scope.lookupvar('vsftpd::params::use_localtime') -%>
+use_localtime=<%= @use_localtime %>
+<% end -%>
+<% if @use_sendfile != scope.lookupvar('vsftpd::params::use_sendfile') -%>
+use_sendfile=<%= @use_sendfile %>
+<% end -%>
+<% if @userlist_log != scope.lookupvar('vsftpd::params::userlist_log') -%>
+userlist_log=<%= @userlist_log %>
+<% end -%>
+<% if @virtual_use_local_privs != scope.lookupvar('vsftpd::params::virtual_use_local_privs') -%>
+virtual_use_local_privs=<%= @virtual_use_local_privs %>
+<% end -%>
+<% if @accept_timeout != scope.lookupvar('vsftpd::params::accept_timeout') -%>
+accept_timeout=<%= @accept_timeout %>
+<% end -%>
+<% if @anon_max_rate != scope.lookupvar('vsftpd::params::anon_max_rate') -%>
+anon_max_rate=<%= @anon_max_rate %>
+<% end -%>
+<% if @anon_umask != scope.lookupvar('vsftpd::params::anon_umask') -%>
+anon_umask=<%= @anon_umask %>
+<% end -%>
+<% if @connect_timeout != scope.lookupvar('vsftpd::params::connect_timeout') -%>
+connect_timeout=<%= @connect_timeout %>
+<% end -%>
+<% if @delay_failed_login != scope.lookupvar('vsftpd::params::delay_failed_login') -%>
+delay_failed_login=<%= @delay_failed_login %>
+<% end -%>
+<% if @delay_successful_login != scope.lookupvar('vsftpd::params::delay_successful_login') -%>
+delay_successful_login=<%= @delay_successful_login %>
+<% end -%>
+<% if @file_open_mode != scope.lookupvar('vsftpd::params::file_open_mode') -%>
+file_open_mode=<%= @file_open_mode %>
+<% end -%>
+<% if @ftp_data_port != scope.lookupvar('vsftpd::params::ftp_data_port') -%>
+ftp_data_port=<%= @ftp_data_port %>
+<% end -%>
+<% if @local_max_rate != scope.lookupvar('vsftpd::params::local_max_rate') -%>
+local_max_rate=<%= @local_max_rate %>
+<% end -%>
+<% if @max_login_fails != scope.lookupvar('vsftpd::params::max_login_fails') -%>
+max_login_fails=<%= @max_login_fails %>
+<% end -%>
+<% if @trans_chunk_size != scope.lookupvar('vsftpd::params::trans_chunk_size') -%>
+trans_chunk_size=<%= @trans_chunk_size %>
+<% end -%>
+<% if @anon_root -%>
+anon_root=<%= @anon_root %>
+<% end -%>
+<% if @banned_email_file != scope.lookupvar('vsftpd::params::banned_email_file') -%>
+banned_email_file=<%= @banned_email_file %>
+<% end -%>
+<% if @cmds_allowed -%>
+cmds_allowed=<%= @cmds_allowed %>
+<% end -%>
+<% if @deny_file -%>
+deny_file=<%= @deny_file %>
+<% end -%>
+<% if @dsa_cert_file -%>
+dsa_cert_file=<%= @dsa_cert_file %>
+<% end -%>
+<% if @dsa_private_key_file -%>
+dsa_private_key_file=<%= @dsa_private_key_file %>
+<% end -%>
+<% if @email_password_file != scope.lookupvar('vsftpd::params::email_password_file') -%>
+email_password_file=<%= @email_password_file %>
+<% end -%>
+<% if @guest_username != scope.lookupvar('vsftpd::params::guest_username') -%>
+guest_username=<%= @guest_username %>
+<% end -%>
+<% if @listen_address -%>
+listen_address=<%= @dsten_address %>
+<% end -%>
+<% if @listen_address6 -%>
+listen_address6=<%= @dsten_address6 %>
+<% end -%>
+<% if @local_root -%>
+local_root=<%= @local_root %>
+<% end -%>
+<% if @message_file != scope.lookupvar('vsftpd::params::message_file') -%>
+message_file=<%= @message_file %>
+<% end -%>
+<% if @pasv_address -%>
+pasv_address=<%= @pasv_address %>
+<% end -%>
+<% if @rsa_cert_file != scope.lookupvar('vsftpd::params::rsa_cert_file') -%>
+rsa_cert_file=<%= @rsa_cert_file %>
+<% end -%>
+<% if @rsa_private_key_file -%>
+rsa_private_key_file=<%= @rsa_private_key_file %>
+<% end -%>
+<% if @secure_chroot_dir != scope.lookupvar('vsftpd::params::secure_chroot_dir') -%>
+secure_chroot_dir=<%= @secure_chroot_dir %>
+<% end -%>
+<% if @ssl_ciphers != scope.lookupvar('vsftpd::params::ssl_ciphers') -%>
+ssl_ciphers=<%= @ssl_ciphers %>
+<% end -%>
+<% if @user_config_dir -%>
+user_config_dir=<%= @user_config_dir %>
+<% end -%>
+<% if @user_sub_token -%>
+user_sub_token=<%= @user_sub_token %>
+<% end -%>
+<% if @userlist_file != scope.lookupvar('vsftpd::params::userlist_file') -%>
+userlist_file=<%= @userlist_file %>
+<% end -%>
+<% if @vsftpd_log_file != scope.lookupvar('vsftpd::params::vsftpd_log_file') -%>
+vsftpd_log_file=<%= @vsftpd_log_file %>
 <% end -%>
