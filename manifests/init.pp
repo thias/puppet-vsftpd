@@ -116,6 +116,7 @@ class vsftpd (
   $anon_root                 = $::vsftpd::params::anon_root,
   $banned_email_file         = $::vsftpd::params::banned_email_file,
   $cmds_allowed              = $::vsftpd::params::cmds_allowed,
+  $listen_ipv6               = $::vsftpd::params::listen_ipv6,
   $deny_file                 = $::vsftpd::params::deny_file,
   $dsa_cert_file             = $::vsftpd::params::dsa_cert_file,
   $dsa_private_key_file      = $::vsftpd::params::dsa_private_key_file,

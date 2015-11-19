@@ -133,19 +133,27 @@ ftpd_banner=<%= @ftpd_banner %>
 #
 # You may specify a file of disallowed anonymous e-mail addresses. Apparently
 # useful for combatting certain DoS attacks.
+<% if @deny_email_enable == 'YES' -%>
+deny_email_enable=YES
+<% else -%>
 #deny_email_enable=YES
+<% end -%>
 # (default follows)
+<% if @banned_email_file != scope.lookupvar('vsftpd::params::banned_email_file') -%>
+banned_email_file=<%= @banned_email_file %>
+<% else -%>
 #banned_email_file=/etc/vsftpd/banned_emails
+<% end -%>
 #
 # You may specify an explicit list of local users to chroot() to their home
 # directory. If chroot_local_user is YES, then this list becomes a list of
 # users to NOT chroot().
 chroot_local_user=<%= @chroot_local_user %>
 chroot_list_enable=<%= @chroot_list_enable %>
-<% if @chroot_list_file != '/etc/vsftpd/chroot_list' -%>
+# (default follows)
+<% if @chroot_list_file != scope.lookupvar('vsftpd::params::chroot_list_file') -%>
 chroot_list_file=<%= @chroot_list_file %>
 <% else -%>
-# (default follows)
 #chroot_list_file=/etc/vsftpd/chroot_list
 <% end -%>
 #
@@ -170,7 +178,11 @@ listen_port=<%= @listen_port %>
 # This directive enables listening on IPv6 sockets. To listen on IPv4 and IPv6
 # sockets, you must run two copies of vsftpd with two configuration files.
 # Make sure, that one of the listen options is commented !!
+<% if @listen_ipv6 == 'YES' -%>
+listen_ipv6=<%= @listen_ipv6 %>
+<% else -%>
 #listen_ipv6=YES
+<% end -%>
 
 pam_service_name=<%= @pam_service_name %>
 userlist_enable=<%= @userlist_enable %>
@@ -222,9 +234,6 @@ check_shell=<%= @check_shell %>
 <% end -%>
 <% if @chmod_enable != scope.lookupvar('vsftpd::params::chmod_enable') -%>
 chmod_enable=<%= @chmod_enable %>
-<% end -%>
-<% if @deny_email_enable != scope.lookupvar('vsftpd::params::deny_email_enable') -%>
-deny_email_enable=<%= @deny_email_enable %>
 <% end -%>
 <% if @dirlist_enable != scope.lookupvar('vsftpd::params::dirlist_enable') -%>
 dirlist_enable=<%= @dirlist_enable %>
@@ -366,9 +375,6 @@ trans_chunk_size=<%= @trans_chunk_size %>
 <% end -%>
 <% if @anon_root -%>
 anon_root=<%= @anon_root %>
-<% end -%>
-<% if @banned_email_file != scope.lookupvar('vsftpd::params::banned_email_file') -%>
-banned_email_file=<%= @banned_email_file %>
 <% end -%>
 <% if @cmds_allowed -%>
 cmds_allowed=<%= @cmds_allowed %>

@@ -35,7 +35,7 @@ describe 'vsftpd' do
         }
     end
   end
-  ['RedHat',
+  ['RedHat', 'CentOS', 'Amazon', 'Debian', 'Ubuntu', 'Fedora',
   ].each do |operatingsystem|
     context "with default params changed on operatingsystem #{operatingsystem}" do
           let :facts do
